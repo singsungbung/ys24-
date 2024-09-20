@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="ko"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;영단어 맞추기&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #ccc;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>h1 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>input[type="text"] {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 80%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 10px 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #28a745;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #218838;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#message {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.2em;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#accuracy {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#remainingWords {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1em;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1&gt;영단어 맞추기&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p id="wordDisplay"&gt;단어가 여기에 나타납니다&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="userInput" placeholder="정답 입력"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="checkAnswer()"&gt;제출&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="stopGame()"&gt;정지&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="message"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="accuracy"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="remainingWords"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 고1~2 수준 영단어 목록 (100개)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const words = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "education", meaning: "교육" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "important", meaning: "중요한" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "environment", meaning: "환경" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "relationship", meaning: "관계" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "government", meaning: "정부" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "problem", meaning: "문제" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "information", meaning: "정보" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "development", meaning: "발전" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "technology", meaning: "기술" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "different", meaning: "다른" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "important", meaning: "중요한" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "freedom", meaning: "자유" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "happiness", meaning: "행복" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "conversation", meaning: "대화" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "history", meaning: "역사" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "society", meaning: "사회" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "by the way", meaning: "그런데" },<span class="Apple-converted-space">  </span>// 문장도 추가</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "actually", meaning: "사실은" }, <span class="Apple-converted-space">  </span>// 간단한 문장 추가</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "opinion", meaning: "의견" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "population", meaning: "인구" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "influence", meaning: "영향" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "suggestion", meaning: "제안" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "direction", meaning: "방향" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "decision", meaning: "결정" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "economy", meaning: "경제" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "health", meaning: "건강" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "law", meaning: "법" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "tradition", meaning: "전통" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "culture", meaning: "문화" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "nature", meaning: "자연" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "respect", meaning: "존경" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "ability", meaning: "능력" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "responsibility", meaning: "책임" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "science", meaning: "과학" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "literature", meaning: "문학" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "opportunity", meaning: "기회" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "society", meaning: "사회" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "friendship", meaning: "우정" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "achievement", meaning: "성취" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "knowledge", meaning: "지식" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "creativity", meaning: "창의성" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "communication", meaning: "소통" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "individual", meaning: "개인" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "community", meaning: "공동체" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "solution", meaning: "해결책" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "transportation", meaning: "교통" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "management", meaning: "관리" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "future", meaning: "미래" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "generation", meaning: "세대" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "entertainment", meaning: "오락" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "investment", meaning: "투자" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "medicine", meaning: "의학" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "experience", meaning: "경험" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "success", meaning: "성공" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "disaster", meaning: "재난" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "purpose", meaning: "목적" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "direction", meaning: "방향" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "program", meaning: "프로그램" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "quality", meaning: "품질" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "quantity", meaning: "양" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "adventure", meaning: "모험" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "career", meaning: "경력" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "competition", meaning: "경쟁" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "habit", meaning: "습관" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "attitude", meaning: "태도" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "decision", meaning: "결정" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "environment", meaning: "환경" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "family", meaning: "가족" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "goal", meaning: "목표" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "hardship", meaning: "어려움" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "innovation", meaning: "혁신" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "journey", meaning: "여정" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "knowledge", meaning: "지식" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "language", meaning: "언어" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "leadership", meaning: "리더십" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "memory", meaning: "기억" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "neighborhood", meaning: "이웃" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "passion", meaning: "열정" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "relationship", meaning: "관계" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "scholarship", meaning: "장학금" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ word: "technology", meaning: "기술" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentWord = {};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const wordDisplay = document.getElementById("wordDisplay");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const message = document.getElementById("message");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const accuracyDisplay = document.getElementById("accuracy");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const remainingWordsDisplay = document.getElementById("remainingWords");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let shownWords = []; // 보여진 단어들의 인덱스 저장</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let correctAnswers = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let totalAnswers = 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 랜덤 단어 선택 함수 (중복 제거)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function getRandomWord() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let randomIndex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>do {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>randomIndex = Math.floor(Math.random() * words.length);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} while (shownWords.includes(randomIndex));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>shownWords.push(randomIndex);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentWord = words[randomIndex];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>wordDisplay.textContent = currentWord.word;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>remainingWordsDisplay.textContent = `남은 단어: ${words.length - shownWords.length}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 정답 확인 함수 (정답률 계산)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function checkAnswer() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const userInput = document.getElementById("userInput").value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>totalAnswers++;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (userInput === currentWord.meaning) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>correctAnswers++;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>message.textContent = "정답입니다!";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>message.style.color = "green";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>message.textContent = `틀렸습니다. 정답은 '${currentWord.meaning}' 입니다.`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>message.style.color = "red";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("userInput").value = "";<span class="Apple-converted-space">  </span>// 입력창 초기화</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateAccuracy();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 다음 문제로 이동하거나 모든 문제를 풀었을 때 등급을 표시</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (shownWords.length &lt; words.length) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>getRandomWord();<span class="Apple-converted-space">  </span>// 다음 문제로 이동</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showGrade(); // 모든 단어를 맞췄을 때 등급 표시</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 정답률 업데이트 함수</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateAccuracy() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const accuracy = (correctAnswers / totalAnswers) * 100;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>accuracyDisplay.textContent = `정답률: ${accuracy.toFixed(2)}%`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 모든 단어를 맞춘 후 등급 표시 함수</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showGrade() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const accuracy = (correctAnswers / totalAnswers) * 100;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let grade;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (accuracy &gt;= 90) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grade = '1등급';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (accuracy &gt;= 80) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grade = '2등급';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (accuracy &gt;= 70) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grade = '3등급';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (accuracy &gt;= 60) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grade = '4등급';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (accuracy &gt;= 50) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grade = '5등급';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (accuracy &gt;= 40) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grade = '6등급';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (accuracy &gt;= 30) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grade = '7등급';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (accuracy &gt;= 20) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grade = '8등급';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>grade = '9등급';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>message.textContent = `모든 문제를 풀었습니다! 당신의 등급은 ${grade}입니다.`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>message.style.color = "blue";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 게임 정지 함수</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function stopGame() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showGrade();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 입력창에 엔터키 입력 시 정답 확인</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById("userInput").addEventListener("keyup", function(event) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (event.keyCode === 13) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const userInput = document.getElementById("userInput").value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (userInput !== "") { // Check if the input is not empty</p>
+<p class="p1"><span class="Apple-converted-space">              </span>checkAnswer();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 페이지 로드 시 첫 번째 단어 표시</p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.onload = getRandomWord;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
