@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영단어 맞추기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>영단어 맞추기</h1>
+        <p id="wordDisplay">단어가 여기에 나타납니다</p>
+        <input type="text" id="userInput" placeholder="정답 입력">
+        <br>
+        <button onclick="checkAnswer()">제출</button>
+        <button onclick="stopGame()">정지</button>
+        <div id="message"></div>
+        <div id="accuracy"></div>
+        <div id="remainingWords"></div>
+    </div>
+
+    <script>
+        // 고1~2 수준 영단어 목록 (100개)
+        const words = [
+            { word: "education", meaning: "교육" },
+            { word: "important", meaning: "중요한" },
+            { word: "environment", meaning: "환경" },
+            { word: "relationship", meaning: "관계" },
+            { word: "government", meaning: "정부" },
+            { word: "problem", meaning: "문제" },
+            { word: "information", meaning: "정보" },
+            { word: "development", meaning: "발전" },
+            { word: "technology", meaning: "기술" },
+            { word: "different", meaning: "다른" },
+            { word: "important", meaning: "중요한" },
+            { word: "freedom", meaning: "자유" },
+            { word: "happiness", meaning: "행복" },
+            { word: "conversation", meaning: "대화" },
+            { word: "history", meaning: "역사" },
+            { word: "society", meaning: "사회" },
+            { word: "by the way", meaning: "그런데" },  // 문장도 추가
+            { word: "actually", meaning: "사실은" },   // 간단한 문장 추가
+            { word: "opinion", meaning: "의견" },
+            { word: "population", meaning: "인구" },
+            { word: "influence", meaning: "영향" },
+            { word: "suggestion", meaning: "제안" },
+            { word: "direction", meaning: "방향" },
+            { word: "decision", meaning: "결정" },
+            { word: "economy", meaning: "경제" },
+            { word: "health", meaning: "건강" },
+            { word: "law", meaning: "법" },
+            { word: "tradition", meaning: "전통" },
+            { word: "culture", meaning: "문화" },
+            { word: "nature", meaning: "자연" },
+            { word: "respect", meaning: "존경" },
+            { word: "ability", meaning: "능력" },
+            { word: "responsibility", meaning: "책임" },
+            { word: "science", meaning: "과학" },
+            { word: "literature", meaning: "문학" },
+            { word: "opportunity", meaning: "기회" },
+            { word: "society", meaning: "사회" },
+            { word: "friendship", meaning: "우정" },
+            { word: "achievement", meaning: "성취" },
+            { word: "knowledge", meaning: "지식" },
+            { word: "creativity", meaning: "창의성" },
+            { word: "communication", meaning: "소통" },
+            { word: "individual", meaning: "개인" },
+            { word: "community", meaning: "공동체" },
+            { word: "solution", meaning: "해결책" },
+            { word: "transportation", meaning: "교통" },
+            { word: "management", meaning: "관리" },
+            { word: "future", meaning: "미래" },
+            { word: "generation", meaning: "세대" },
+            { word: "entertainment", meaning: "오락" },
+            { word: "investment", meaning: "투자" },
+            { word: "medicine", meaning: "의학" },
+            { word: "experience", meaning: "경험" },
+            { word: "success", meaning: "성공" },
+            { word: "disaster", meaning: "재난" },
+            { word: "purpose", meaning: "목적" },
+            { word: "direction", meaning: "방향" },
+            { word: "program", meaning: "프로그램" },
+            { word: "quality", meaning: "품질" },
+            { word: "quantity", meaning: "양" },
+            { word: "adventure", meaning: "모험" },
+            { word: "career", meaning: "경력" },
+            { word: "competition", meaning: "경쟁" },
+            { word: "habit", meaning: "습관" },
+            { word: "attitude", meaning: "태도" },
+            { word: "decision", meaning: "결정" },
+            { word: "environment", meaning: "환경" },
+            { word: "family", meaning: "가족" },
+            { word: "goal", meaning: "목표" },
+            { word: "hardship", meaning: "어려움" },
+            { word: "innovation", meaning: "혁신" },
+            { word: "journey", meaning: "여정" },
+            { word: "knowledge", meaning: "지식" },
+            { word: "language", meaning: "언어" },
+            { word: "leadership", meaning: "리더십" },
+            { word: "memory", meaning: "기억" },
+            { word: "neighborhood", meaning: "이웃" },
+            { word: "passion", meaning: "열정" },
+            { word: "relationship", meaning: "관계" },
+            { word: "scholarship", meaning: "장학금" },
+            { word: "technology", meaning: "기술" }
+        ];
+
+        let currentWord = {};
+        const wordDisplay = document.getElementById("wordDisplay");
+        const message = document.getElementById("message");
+        const accuracyDisplay = document.getElementById("accuracy");
+        const remainingWordsDisplay = document.getElementById("remainingWords");
+        let shownWords = []; // 보여진 단어들의 인덱스 저장
+        let correctAnswers = 0;
+        let totalAnswers = 0;
+
+        // 랜덤 단어 선택 함수 (중복 제거)
+        function getRandomWord() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * words.length);
+            } while (shownWords.includes(randomIndex));
+
+            shownWords.push(randomIndex);
+            currentWord = words[randomIndex];
+            wordDisplay.textContent = currentWord.word;
+            remainingWordsDisplay.textContent = `남은 단어: ${words.length - shownWords.length}`;
+        }
+
+        // 정답 확인 함수 (정답률 계산)
+        function checkAnswer() {
+            const userInput = document.getElementById("userInput").value.trim();
+            totalAnswers++;
+            if (userInput === currentWord.meaning) {
+                correctAnswers++;
+                message.textContent = "정답입니다!";
+                message.style.color = "green";
+            } else {
+                message.textContent = `틀렸습니다. 정답은 '${currentWord.meaning}' 입니다.`;
+                message.style.color = "red";
+            }
+            document.getElementById("userInput").value = "";  // 입력창 초기화
+            updateAccuracy();
+
+            // 다음 문제로 이동하거나 모든 문제를 풀었을 때 등급을 표시
+            if (shownWords.length < words.length) {
+                getRandomWord();  // 다음 문제로 이동
+            } else {
+                showGrade(); // 모든 단어를 맞췄을 때 등급 표시
+            }
+        }
+
+        // 정답률 업데이트 함수
+        function updateAccuracy() {
+            const accuracy = (correctAnswers / totalAnswers) * 100;
+            accuracyDisplay.textContent = `정답률: ${accuracy.toFixed(2)}%`;
+        }
+
+        // 모든 단어를 맞춘 후 등급 표시 함수
+        function showGrade() {
+            const accuracy = (correctAnswers / totalAnswers) * 100;
+            let grade;
+            if (accuracy >= 90) {
+                grade = '1등급';
+            } else if (accuracy >= 80) {
+                grade = '2등급';
+            } else if (accuracy >= 70) {
+                grade = '3등급';
+            } else if (accuracy >= 60) {
+                grade = '4등급';
+            } else if (accuracy >= 50) {
+                grade = '5등급';
+            } else if (accuracy >= 40) {
+                grade = '6등급';
+            } else if (accuracy >= 30) {
+                grade = '7등급';
+            } else if (accuracy >= 20) {
+                grade = '8등급';
+            } else {
+                grade = '9등급';
+            }
+            message.textContent = `모든 문제를 풀었습니다! 당신의 등급은 ${grade}입니다.`;
+            message.style.color = "blue";
+        }
+
+        // 게임 정지 함수
+        function stopGame() {
+            showGrade();
+        }
+
+        // 입력창에 엔터키 입력 시 정답 확인
+        document.getElementById("userInput").addEventListener("keyup", function(event) {
+          if (event.keyCode === 13) {
+            const userInput = document.getElementById("userInput").value.trim();
+            if (userInput !== "") { // Check if the input is not empty
+              checkAnswer();
+            }
+          }
+        });
+
+        // 페이지 로드 시 첫 번째 단어 표시
+        window.onload = getRandomWord;
+    </script>
+</body>
+</html>
